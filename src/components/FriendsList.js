@@ -24,6 +24,7 @@ const FriendsList = () => {
     <div>
         <h2>Friends List</h2>
         <ul>
+            {console.log('hello')}
             {
                 friends.map(friend => {
                     return <li>{friend.name} - {friend.age} - {friend.email}</li>
