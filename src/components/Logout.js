@@ -1,9 +1,9 @@
 import React, { useEffect } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 const Logout = () => {
-    const navigate = useNavigate();
+    const { push } = useHistory();
     useEffect(() => {
         const token = localStorage.getItem('token')
         axios.post('http://localhost:9000/api/logout', {}, {
@@ -13,7 +13,7 @@ const Logout = () => {
         })
             .then(res => {
                 localStorage.removeItem("token")
-                navigate('/login')
+                push('/login')
             })
             .catch(err => {
                 console.log(err);

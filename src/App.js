@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Route, Routes, Link, Navigate } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
 import Login from './components/Login';
 import FriendsList from './components/FriendsList';
 import AddFriend from './components/AddFriends';
 import Logout from './components/Logout';
-
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -20,13 +18,27 @@ function App() {
           <Link className="link" to="/friends/add">Add Friends</Link>
           <Link className="link" to="/logout">Logout</Link>
         </header>
-        <Routes>
-          <Route exact path="/" element={<Login />}></Route>
-          <Route exact path="/login" element={<Login />}></Route>
-          <Route path="friends/*" element={<PrivateRoute component={FriendsList}/>}/>
-          <Route path="/friends/add" element={<AddFriend />}></Route>
-          <Route path="/logout" element={<Logout />}></Route>
-        </Routes>
+        <Router>
+
+          <Route exact path="/">
+            <Login />
+          </Route>
+
+          <Route exact path="/login">
+            <Redirect to="/" />
+          </Route>
+
+          <PrivateRoute path="/friends" component={FriendsList}/>
+
+          <Route path="/friends/add">
+            <AddFriend />
+          </Route>
+
+          <Route path="/logout">
+            <Logout />
+          </Route>
+
+        </Router>
       </div>
   );
 }

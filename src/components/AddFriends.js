@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const AddFriend = () => {
@@ -9,7 +9,7 @@ const AddFriend = () => {
         email: '',
     });
 
-    const navigate = useNavigate();
+    const { push } = useHistory();
 
     const handleChange = (e) => {
         setForm({
@@ -27,7 +27,7 @@ const AddFriend = () => {
             }
         })
             .then(res => {
-                navigate('/friends')
+                push('/friends')
                 console.log('hello')
             })
             .catch(err => {

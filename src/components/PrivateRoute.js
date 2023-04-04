@@ -1,13 +1,12 @@
 import React from "react"
-import { Route, Routes, useNavigate } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 
 const PrivateRoute = ({component: Component, ...rest}) => {
-    const navigate = useNavigate()
     return <Route {...rest} render={(props) => {
         if(localStorage.getItem('token')) {
             return( <Component {...props} />)
         } else {
-            return(navigate('/login'))
+            return <Redirect to="/login" />
         }
     }} />
 }
